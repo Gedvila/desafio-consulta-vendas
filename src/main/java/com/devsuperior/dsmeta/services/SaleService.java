@@ -12,8 +12,10 @@ import com.devsuperior.dsmeta.repositories.SaleRepository;
 @Service
 public class SaleService {
 
-	@Autowired
-	private SaleRepository repository;
+	private final SaleRepository repository;
+    public SaleService(SaleRepository repository) {
+        this.repository = repository;
+    }
 	
 	public SaleMinDTO findById(Long id) {
 		Optional<Sale> result = repository.findById(id);

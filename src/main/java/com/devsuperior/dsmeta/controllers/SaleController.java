@@ -14,10 +14,12 @@ import com.devsuperior.dsmeta.services.SaleService;
 @RequestMapping(value = "/sales")
 public class SaleController {
 
-	@Autowired
-	private SaleService service;
-	
-	@GetMapping(value = "/{id}")
+	private final SaleService service;
+    public SaleController(SaleService service) {
+        this.service = service;
+    }
+
+    @GetMapping(value = "/{id}")
 	public ResponseEntity<SaleMinDTO> findById(@PathVariable Long id) {
 		SaleMinDTO dto = service.findById(id);
 		return ResponseEntity.ok(dto);

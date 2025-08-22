@@ -32,14 +32,16 @@ public class SaleService {
 
     public Page<SaleReportDTO> relatorioVendas(Pageable pageable, String minDate, String maxDate, String name) {
 
-        LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
-        LocalDate defaultInitDate = today.minusYears(1L);
-        if(maxDate == null) {
-            maxDate = today.toString();
-        } else if ( minDate == null) {
-            minDate = defaultInitDate.toString();
+        try {
+            Page<Sale> result = repository.relatorioVendas(pageable,LocalDate.parse(minDate),LocalDate.parse(maxDate),name);
+            return result.map(SaleReportDTO::new);
+        } catch (Exception e){
+            LocalDate defaulMaxDate = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+            LocalDate defaultMinDate =  defaulMaxDate.minusYears(1L);
+
+            Page<Sale> result = repository.relatorioVendas(pageable,defaultMinDate,defaulMaxDate,name);
+            return result.map(SaleReportDTO::new);
         }
-        Page<Sale> result = repository.relatorioVendas(pageable,minDate,maxDate,name);
-        return result.map(SaleReportDTO::new);
+
     }
 }

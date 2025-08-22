@@ -35,7 +35,7 @@ public class SaleController {
 	}
 
     @GetMapping(value = "/report")
-    public ResponseEntity<Page<SaleReportDTO>> getReport(Pageable pageable, @RequestParam String minDate, @RequestParam String maxDate, @RequestParam String name) {
+    public ResponseEntity<Page<SaleReportDTO>> getReport(Pageable pageable, @RequestParam(required = false) String minDate, @RequestParam(required = false) String maxDate, @RequestParam(defaultValue = "") String name) {
         Page<SaleReportDTO> dto = service.relatorioVendas(pageable,minDate,maxDate,name);
         return ResponseEntity.ok(dto);
     }

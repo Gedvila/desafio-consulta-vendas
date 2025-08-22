@@ -7,24 +7,24 @@ import java.time.LocalDate;
 public class SaleReportDTO {
 
     private Long id;
-    private LocalDate data;
-    private Double qtdVendas;
-    private String salesName;
+    private LocalDate date;
+    private Double amount;
+    private String sellerName;
 
-    public SaleReportDTO(Long id, LocalDate data, Double qtdVendas, String salesName) {
+    public SaleReportDTO(Long id, LocalDate date, Double amount, String sellerName) {
         this.id = id;
-        this.data = data;
-        this.qtdVendas = qtdVendas;
-        this.salesName = salesName;
+        this.date = date;
+        this.amount = amount;
+        this.sellerName = sellerName;
     }
 
     public SaleReportDTO(){}
 
     public SaleReportDTO(Sale sale){
         this.id = sale.getId();
-        this.data = sale.getDate();
-        this.qtdVendas = sale.getAmount();
-        this.salesName = sale.getSeller().getName();
+        this.date = sale.getDate();
+        this.amount = sale.getAmount();
+        this.sellerName = sale.getSeller().getName();
     }
 
     public Long getId() {
@@ -35,27 +35,27 @@ public class SaleReportDTO {
         this.id = id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public Double getQtdVendas() {
-        return qtdVendas;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setQtdVendas(Double qtdVendas) {
-        this.qtdVendas = qtdVendas;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public String getSalesName() {
-        return salesName;
+    public String getSellerName() {
+        return sellerName;
     }
 
-    public void setSalesName(String salesName) {
-        this.salesName = salesName;
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 }
